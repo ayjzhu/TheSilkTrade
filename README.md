@@ -7,7 +7,7 @@
 - [Technology Stack](#Technology-Stack)
 - [Specifications](#Specifications)
 - [How To Run](#How-To-Run)
-- [Known issues](#Known-Issues
+- [Known issues](#Known-Issues)
 - [Diagrams](#diagrams)
 
 ## Overview
