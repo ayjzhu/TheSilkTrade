@@ -1,0 +1,13 @@
+.previous-button {
+    /* Move the button to the left */
+    margin-left: 38%;
+}
+.next-button {
+    /* Move the button to the right */
+    margin-left: 51%;
+    margin-top: -38px;
+}
+.cart-button {
+    margin-left: 110px;
+    margin-top: -38px;
+}

@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "start": "cd backend && node index.js",
+        "build": "cd thesilktrade && npm install && npm run build && cd ../backend && npm install"
+    }
+}

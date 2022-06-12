@@ -1,0 +1,15 @@
+.custom-color {
+    background: #92C0D2 !important;
+}
+
+/*Shift elements of navbar to the left */
+.navbar-nav {
+    margin-left: 0px;
+}
+/*Shift elements of the title "The Silk Trade" to the left */
+.navbar-brand {
+    margin-left: -40px;
+}
+.justify-content-end {
+    margin-right: -50px;
+}

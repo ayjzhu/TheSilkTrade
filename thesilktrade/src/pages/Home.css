@@ -1,0 +1,45 @@
+/* Change width of the search bar */
+
+.d-flex {
+  width: 400px !important;
+ margin: 0 auto;
+ margin-top : -30px;
+}
+
+.logo-container {
+    /*Shift up the logo*/
+    margin-top: -45px;
+}
+
+.add {
+    /*Shrink the image*/
+    width: 100px;
+    height: 100px;
+}
+
+.add-box {
+    padding-left: 22px;
+}
+
+.usd-circle {
+    width: 100px;
+    height: 100px;
+}
+
+.usd-box {
+    padding-left: 22px;
+
+}
+
+.confetti {
+    width: 100px;
+    height: 100px;
+}
+
+.confetti-box {
+    padding-left: 36px;
+
+}
+
+.three-icons{
+    padding-left: 100px;}

@@ -1,0 +1,229 @@
+# Use this file to view the API for the backend.
+# You can use a service like https://editor.swagger.io/ to visually view the API.
+openapi: 3.0.0
+info:
+  description: Backend API for TheSilkTrade
+  version: "1.0.0"
+  title: TheSilkTrade API
+paths:
+  /api/user/profile:
+    get:
+      summary: Get the user profile.
+      operationId: getUserProfile
+      description: |
+        Get the user profile of the user that initiated the request.
+      responses:
+        '200':
+          description: User profile matching user
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/User'
+                 
+        '401':
+          description: Invalid authorization.
+      tags:
+        - users
+    put:
+      summary: Update the user profile.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Updated user profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      tags:
+        - users
+  /api/user/profile/{userId}:
+    parameters:
+      - in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+          example: d290f1ee6c544b0190e6d701748f0851
+    get:
+      summary: "Get another user's profile."
+      operationId: getOtherUserProfile
+      description: |
+        Get the user profile of the user that initiated the request.
+      responses:
+        '200':
+          description: User profile matching user
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/User'
+                 
+        '401':
+          description: Invalid authorization.
+      tags:
+        - users
+  /api/user/id:
+    get:
+      summary: Get user ID.
+      operationId: getUserId
+      description: |
+        Get the user profile of the user that initiated the request.
+      responses:
+        '200':
+          description: User ID matching user that initiated request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: d290f1ee6c544b0190e6d701748f0851
+        '401':
+          description: Invalid authorization.
+      tags:
+        - users
+  /api/clothes/:
+    get:
+      summary: Get all clothing
+      operationId: getAllClothes
+      description: |
+        Get all clothing items available!
+      responses:
+        '200':
+          description: Array of clothing items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClothingItem'
+      tags:
+        - clothing
+    post:
+      summary: Submit a piece of clothing to the catelogue.
+      requestBody:
+        content:
+          application/json:
+             schema:
+               type: object
+               required:
+                 - name
+                 - description
+               properties:
+                 name:
+                   type: string
+                   example: "Fancy Red Dress"
+                 description:
+                   type: string
+                   example: "Beautiful red dress!"
+                 images:
+                   type: string
+                   example: "Array of files submitted!"
+      responses:
+        '200':
+          description: Clothing Item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClothingItem'
+        '400':
+          description: Missing information in request body!
+        '401':
+          description: Invalid authorization.
+        '403':
+          description: No user ID associated with authenticated user!
+      tags:
+        - clothing
+  /api/clothes/{clotheId}:
+    get:
+      summary: Get a clothe matching the clotheId
+      parameters:
+        - in: path
+          name: clotheId
+          required: true
+          schema:
+            type: string
+            example: d290f1ee6c544b0190e6d701748f0851
+      responses:
+        '200':
+          description: Clothe Item matching clotheId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClothingItem'
+      tags:
+        - clothing
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - authId
+        - name
+        - email
+      properties:
+        id:
+          type: string
+          example: d290f1ee6c544b0190e6d701748f0851
+        authId:
+          type: string
+          example: google-auth|10214190241242
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          format: email
+          example: 'johndoe@website.com'
+        about:
+          type: string
+          example: 'This is a personal profile description for John Doe!'
+        profilePicture:
+          $ref: '#/components/schemas/Image'
+    ClothingItem:
+      type: object
+      required:
+        - id
+        - userId
+        - name
+        - description
+      properties:
+        id:
+          type: string
+          example: d290f1ee6c544b0190e6d701748f0851
+        userId:
+          type: string
+          example: d290f1ee6c544b0190e6d701748f0851
+        name:
+          type: string
+          example: Fancy Red Dress
+        description:
+          type: string
+          example: "An eloquent beautiful silk-woven red dress!"
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+    Image:
+      type: object
+      required:
+        - image
+        - contentType
+      properties:
+        image:
+          type: string
+          format: byte
+        contentType:
+          type: string
+       
+        
+tags:
+  - name: users
+    description: Users endpoint
+  - name: clothing
+    description: Clothing endpoint
